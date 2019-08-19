@@ -3,7 +3,6 @@ package com.example.daggerexample;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
@@ -29,24 +28,24 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
         subscribeObservers();
     }
 
-    private void subscribeObservers(){
+    private void subscribeObservers() {
         sessionManager.getAuthUser().observe(this, new Observer<AuthResource<User>>() {
             @Override
             public void onChanged(AuthResource<User> userAuthResource) {
-                if(userAuthResource!=null){
-                    switch (userAuthResource.status){
-                        case LOADING:{
+                if (userAuthResource != null) {
+                    switch (userAuthResource.status) {
+                        case LOADING: {
                             break;
                         }
-                        case AUTHENTICATED:{
-                            Log.d(TAG, "onChanged: LOGGED IN: "+(userAuthResource.data==null?"NULL":userAuthResource.data.getEmail()));
+                        case AUTHENTICATED: {
+                            Log.d(TAG, "onChanged: LOGGED IN: " + (userAuthResource.data == null ? "NULL" : userAuthResource.data.getEmail()));
                             break;
                         }
-                        case ERROR:{
+                        case ERROR: {
                             Log.d(TAG, "onChanged: ERROR OCCURED");
                             break;
                         }
-                        case NOT_AUTHENTICATED:{
+                        case NOT_AUTHENTICATED: {
                             navLogOut();
                             break;
                         }
@@ -56,8 +55,8 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
         });
     }
 
-    private void navLogOut(){
-        startActivity(new Intent(this,AuthActivity.class));
+    private void navLogOut() {
+        startActivity(new Intent(this, AuthActivity.class));
         finish();
     }
 }

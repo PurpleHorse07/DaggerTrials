@@ -25,44 +25,42 @@ import dagger.android.support.DaggerFragment;
 public class ProfileFragment extends DaggerFragment {
 
     private static final String TAG = "ProfileFragment";
-
-    private ProfileViewModel profileViewModel;
-    private TextView name,username,email,website;
-
     @Inject
     ViewModelProviderFactory providerFactory;
+    private ProfileViewModel profileViewModel;
+    private TextView name, username, email, website;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Toast.makeText(getActivity(), "Profile Fragment", Toast.LENGTH_SHORT).show();
-        return inflater.inflate(R.layout.fragment_profile,container,false);
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onViewCreated: PROFILE FRAGMENT CREATED");
-        profileViewModel=new ViewModelProvider(this,providerFactory).get(ProfileViewModel.class);
-        name=view.findViewById(R.id.name);
-        username=view.findViewById(R.id.username);
-        email=view.findViewById(R.id.mail);
-        website=view.findViewById(R.id.website);
+        profileViewModel = new ViewModelProvider(this, providerFactory).get(ProfileViewModel.class);
+        name = view.findViewById(R.id.name);
+        username = view.findViewById(R.id.username);
+        email = view.findViewById(R.id.mail);
+        website = view.findViewById(R.id.website);
 
         subscribeObservers();
     }
 
-    private void subscribeObservers(){
+    private void subscribeObservers() {
         profileViewModel.getAuthenticatedUser().removeObservers(getViewLifecycleOwner());
         profileViewModel.getAuthenticatedUser().observe(getViewLifecycleOwner(), new Observer<AuthResource<User>>() {
             @Override
             public void onChanged(AuthResource<User> userAuthResource) {
-                if (userAuthResource != null){
-                    switch (userAuthResource.status){
-                        case AUTHENTICATED:{
+                if (userAuthResource != null) {
+                    switch (userAuthResource.status) {
+                        case AUTHENTICATED: {
                             setUserDetails(userAuthResource.data);
                             break;
                         }
-                        case ERROR:{
+                        case ERROR: {
                             setErrorDetails(userAuthResource.message);
                             break;
                         }

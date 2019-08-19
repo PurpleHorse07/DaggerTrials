@@ -5,14 +5,16 @@
     android:id="@+id/main"
     app:startDestination="@id/profile">
 
-    <fragment android:id="@+id/profile"
+    <fragment
+        android:id="@+id/profile"
         android:name="com.example.daggerexample.ui.main.profile.ProfileFragment"
         android:label="@string/profile"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile" />
 
-    <fragment android:id="@+id/posts"
+    <fragment
+        android:id="@+id/posts"
         android:name="com.example.daggerexample.ui.main.posts.PostsFragment"
         android:label="@string/posts"
-        tools:layout="@layout/fragment_posts"/>
+        tools:layout="@layout/fragment_posts" />
 
 </navigation>

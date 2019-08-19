@@ -21,7 +21,7 @@ public class AuthResource<T> {
         this.message = message;
     }
 
-    public static <T> AuthResource<T> authenticated (@Nullable T data) {
+    public static <T> AuthResource<T> authenticated(@Nullable T data) {
         return new AuthResource<>(AuthStatus.AUTHENTICATED, data, null);
     }
 
@@ -33,10 +33,10 @@ public class AuthResource<T> {
         return new AuthResource<>(AuthStatus.LOADING, data, null);
     }
 
-    public static <T> AuthResource<T> logout () {
+    public static <T> AuthResource<T> logout() {
         return new AuthResource<>(AuthStatus.NOT_AUTHENTICATED, null, null);
     }
 
-    public enum AuthStatus { AUTHENTICATED, ERROR, LOADING, NOT_AUTHENTICATED}
+    public enum AuthStatus {AUTHENTICATED, ERROR, LOADING, NOT_AUTHENTICATED}
 
 }

@@ -21,7 +21,7 @@ public class Resource<T> {
         this.message = message;
     }
 
-    public static <T> Resource<T> success (@Nullable T data) {
+    public static <T> Resource<T> success(@Nullable T data) {
         return new Resource<>(Status.SUCCESS, data, null);
     }
 
@@ -33,5 +33,5 @@ public class Resource<T> {
         return new Resource<>(Status.LOADING, data, null);
     }
 
-    public enum Status { SUCCESS, ERROR, LOADING}
+    public enum Status {SUCCESS, ERROR, LOADING}
 }

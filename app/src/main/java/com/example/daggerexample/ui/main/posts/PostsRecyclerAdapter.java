@@ -16,17 +16,17 @@ import java.util.List;
 
 public class PostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Post> posts=new ArrayList<>();
+    private List<Post> posts = new ArrayList<>();
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new PostViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post_list,parent,false));
+        return new PostViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post_list, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((PostViewHolder)holder).bind(posts.get(position));
+        ((PostViewHolder) holder).bind(posts.get(position));
     }
 
     @Override
@@ -40,14 +40,15 @@ public class PostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     private class PostViewHolder extends RecyclerView.ViewHolder {
-        TextView title,body;
+        TextView title, body;
+
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
-            title=itemView.findViewById(R.id.title);
-            body=itemView.findViewById(R.id.body);
+            title = itemView.findViewById(R.id.title);
+            body = itemView.findViewById(R.id.body);
         }
 
-        void bind(Post post){
+        void bind(Post post) {
             title.setText(post.getTitle());
             body.setText(post.getBody());
         }

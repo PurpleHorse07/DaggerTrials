@@ -11,11 +11,11 @@ public class VSpaceItemDecor extends RecyclerView.ItemDecoration {
     private final int verticalSpaceHeight;
 
     public VSpaceItemDecor(int verticalSpaceHeight) {
-        this.verticalSpaceHeight=verticalSpaceHeight;
+        this.verticalSpaceHeight = verticalSpaceHeight;
     }
 
     @Override
     public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-        outRect.bottom=verticalSpaceHeight;
+        outRect.bottom = verticalSpaceHeight;
     }
 }

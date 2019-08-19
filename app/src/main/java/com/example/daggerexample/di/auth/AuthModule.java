@@ -11,7 +11,7 @@ public class AuthModule {
 
     @AuthScope
     @Provides
-    static AuthApi provideAuthApi(Retrofit retrofit){
+    static AuthApi provideAuthApi(Retrofit retrofit) {
         return retrofit.create(AuthApi.class);
     }
 }

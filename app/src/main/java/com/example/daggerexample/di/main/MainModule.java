@@ -1,6 +1,5 @@
 package com.example.daggerexample.di.main;
 
-import com.example.daggerexample.models.Post;
 import com.example.daggerexample.network.main.MainApi;
 import com.example.daggerexample.ui.main.posts.PostsRecyclerAdapter;
 
@@ -13,13 +12,13 @@ public class MainModule {
 
     @MainScope
     @Provides
-    static MainApi provideMainApi(Retrofit retrofit){
+    static MainApi provideMainApi(Retrofit retrofit) {
         return retrofit.create(MainApi.class);
     }
 
     @MainScope
     @Provides
-    static PostsRecyclerAdapter provideRecyclerAdapter(){
+    static PostsRecyclerAdapter provideRecyclerAdapter() {
         return new PostsRecyclerAdapter();
     }
 

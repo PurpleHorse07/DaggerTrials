@@ -31,39 +31,39 @@ public class PostsViewModel extends ViewModel {
     private MediatorLiveData<Resource<List<Post>>> posts;
 
     @Inject
-    public PostsViewModel(SessionManager sessionManager,MainApi mainApi){
+    public PostsViewModel(SessionManager sessionManager, MainApi mainApi) {
         Log.d(TAG, "ProfileViewModel: POSTS WORKINGG!!!");
-        this.sessionManager=sessionManager;
-        this.mainApi=mainApi;
+        this.sessionManager = sessionManager;
+        this.mainApi = mainApi;
     }
 
-    public LiveData<Resource<List<Post>>> observePosts(){
-        if(posts==null){
-            posts=new MediatorLiveData<>();
-            posts.setValue(Resource.loading((List<Post>)null));
-            final LiveData<Resource<List<Post>>> source=LiveDataReactiveStreams.fromPublisher(
+    public LiveData<Resource<List<Post>>> observePosts() {
+        if (posts == null) {
+            posts = new MediatorLiveData<>();
+            posts.setValue(Resource.loading((List<Post>) null));
+            final LiveData<Resource<List<Post>>> source = LiveDataReactiveStreams.fromPublisher(
                     mainApi.getPostsFromUser(sessionManager.getAuthUser().getValue().data.getId())
-                    .onErrorReturn(new Function<Throwable, List<Post>>() {
-                        @Override
-                        public List<Post> apply(Throwable throwable) throws Exception {
-                            Log.e(TAG, "apply: Error:: ",throwable);
-                            List<Post> posts=new ArrayList<>();
-                            posts.add(Post.builder().userId(-1).build());
-                            return posts;
-                        }
-                    })
-                    .map(new Function<List<Post>, Resource<List<Post>>>() {
-                        @Override
-                        public Resource<List<Post>> apply(List<Post> posts) throws Exception {
-                            if(posts.size()>0){
-                                if(posts.get(0).getId()==-1){
-                                    return Resource.error("Something Went Wrong.",null);
+                            .onErrorReturn(new Function<Throwable, List<Post>>() {
+                                @Override
+                                public List<Post> apply(Throwable throwable) throws Exception {
+                                    Log.e(TAG, "apply: Error:: ", throwable);
+                                    List<Post> posts = new ArrayList<>();
+                                    posts.add(Post.builder().userId(-1).build());
+                                    return posts;
                                 }
-                            }
-                            return Resource.success(posts);
-                        }
-                    })
-                    .subscribeOn(Schedulers.io())
+                            })
+                            .map(new Function<List<Post>, Resource<List<Post>>>() {
+                                @Override
+                                public Resource<List<Post>> apply(List<Post> posts) throws Exception {
+                                    if (posts.size() > 0) {
+                                        if (posts.get(0).getId() == -1) {
+                                            return Resource.error("Something Went Wrong.", null);
+                                        }
+                                    }
+                                    return Resource.success(posts);
+                                }
+                            })
+                            .subscribeOn(Schedulers.io())
             );
             posts.addSource(source, new Observer<Resource<List<Post>>>() {
                 @Override
@@ -75,7 +75,6 @@ public class PostsViewModel extends ViewModel {
         }
         return posts;
     }
-
 
 
 }
