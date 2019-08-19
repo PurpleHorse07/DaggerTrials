@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">DaggerExample</string>
+    <string name="logoimage">LogoImage</string>
+    <string name="enter_login_id">Enter Login ID</string>
+    <string name="login">LOGIN</string>
+    <string name="log_out">Log Out</string>
+    <string name="currently_there_are_no_posts_to_show">Currently there are no posts to show! :(</string>
+    <string name="posts">Posts</string>
+    <string name="profile">Profile</string>
+</resources>
