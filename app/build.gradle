@@ -31,7 +31,7 @@ dependencies {
     compileOnly "org.projectlombok:lombok:$lombok"
     annotationProcessor "org.projectlombok:lombok:$lombok"
 
-    def dagger = "2.22"
+    def dagger = '2.24'
     implementation "com.google.dagger:dagger:$dagger"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger"
     implementation "com.google.dagger:dagger-android:$dagger"
@@ -48,14 +48,14 @@ dependencies {
     def lifecycle = '2.2.0-alpha03'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
 
-    def retrofit = "2.5.0"
+    def retrofit = '2.6.1'
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
 
     def rxjava = '2.1.1'
     implementation "io.reactivex.rxjava2:rxjava:$rxjava"
 
-    def rxcalladapter = '2.5.0'
+    def rxcalladapter = '2.6.1'
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rxcalladapter"
 
     def reactivestreams = "1.1.1"
